@@ -1,0 +1,106 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 201 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    /* Turing Machine specific colors */
+    --state-default: 210 40% 98%;
+    --state-active: 142 76% 36%;
+    --state-error: 0 84% 60%;
+    --tape-default: 210 40% 98%;
+    --tape-active: 201 100% 50%;
+    --tape-read: 142 76% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes head-movement {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(var(--movement-distance)); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes highlight {
+  0% { background-color: rgba(51, 195, 240, 0.1); }
+  50% { background-color: rgba(51, 195, 240, 0.3); }
+  100% { background-color: rgba(51, 195, 240, 0.1); }
+}
+
+.tape-cell {
+  @apply border border-gray-300 w-12 h-12 flex items-center justify-center 
+         text-lg font-mono transition-all duration-300;
+}
+
+.tape-cell.active {
+  @apply border-primary bg-primary bg-opacity-10;
+}
+
+.state-node {
+  @apply rounded-full border border-gray-300 w-16 h-16 flex items-center 
+         justify-center transition-all duration-300;
+}
+
+.state-node.active {
+  @apply border-green-500 bg-green-500 bg-opacity-20 text-green-700;
+}
+
+.state-node.start {
+  @apply border-blue-500 border-2;
+}
+
+.state-node.final {
+  @apply border-double border-2;
+}
+
+.transition-arrow {
+  @apply stroke-gray-400 transition-all duration-300;
+}
+
+.transition-arrow.active {
+  @apply stroke-green-500 stroke-2;
+}
